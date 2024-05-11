@@ -134,7 +134,11 @@ final class We_Devs {
 	}
 	
 	public function init_plugin(){
-		new WeDevs\Academy\Admin();
+		if( is_admin() ){
+			new WeDevs\Academy\Admin();
+		}else{
+			new WeDevs\Academy\Frontend();
+		}
 	}
 	
 	
