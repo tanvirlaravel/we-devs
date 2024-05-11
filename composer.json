@@ -1,0 +1,19 @@
+{
+    "name": "tanvirlaravel/we-devs",
+    "description": "Wedevs Academy Youtube pluging pactrice",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+	"autoload": {
+    "psr-4": {
+		"WeDevs\\Academy\\": "includes/"
+    },
+		"files": []
+	},
+	"authors": [
+    {
+      "name": "Tanvir"
+    }
+	],
+	"minimum-stability": "dev",
+	"require": {}
+}

@@ -19,6 +19,10 @@
     exit;
  }
  
+require_once __DIR__ . "/vendor/autoload.php";
+  
+  
+ 
   /**
   * The main class of wedevs plugin.
   */
@@ -43,6 +47,14 @@ final class We_Devs {
 		* refer to the main plugin file.		
 		*/
 		register_activation_hook(__FILE__, [$this, "activate"]);
+		
+		/**
+		* In WordPress, the plugin_loaded action hook 
+		* is fired once all active plugins have been loaded. This hook provides a way to execute code 
+		* after plugins have been loaded but before any WordPress content is rendered. It can be useful 
+		* for initializing plugin-specific functionality or checking if certain plugins are active.
+		*/
+		add_action("plugin_loaded", [$this, "init_plugin"]);
 	}  
 	
 	/**
@@ -119,6 +131,10 @@ final class We_Devs {
 		}
 		
 		
+	}
+	
+	public function init_plugin(){
+		new WeDevs\Academy\Admin\Menu();
 	}
 	
 	
