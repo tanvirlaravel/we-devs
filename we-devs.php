@@ -29,11 +29,27 @@ final class We_Devs {
 	
 	
 	private function __construct(){
+		
 		$this->define_constants();
 		
-		
+		/**
+		* In WordPress, the register_activation_hook() function 
+		* is used to register a callback function that is executed when a plugin is activated. This hook 
+		* allows plugin developers to perform tasks such as initializing plugin settings, creating 
+		* database tables, or performing other setup operations upon activation.
+		*
+		* register_activation_hook( string $file, callable $callback )
+		* $file: The main plugin file path. Typically, you would use the __FILE__ magic constant to 
+		* refer to the main plugin file.		
+		*/
+		register_activation_hook(__FILE__, [$this, "activate"]);
 	}  
 	
+	/**
+         * Initializes a singleton instance
+         * 
+         * @return \We_Devs
+    */
 	public static function init(){
 		
 		$instance = false;
@@ -50,6 +66,9 @@ final class We_Devs {
 	}
 	
 	
+	/**
+		* Define require plugin constrains
+    */
 	public function define_constants(){
 		/**
 		* self::version refers to accessing a class constant named version within the same 
@@ -76,6 +95,33 @@ final class We_Devs {
 	}
 	
 	
+	public function activate(){
+		/**
+		* In WordPress, the get_option() function 
+		* is used to retrieve the value of an option from the wp_options database table. 
+		* Options in WordPress are used to store site settings, configurations, and other data.
+		*/
+		
+		$installed = get_option('wd_academy_installed');
+		
+		if(! $installed)
+		{		
+			/**
+			* In WordPress, the update_option() function 
+			* is used to update the value of an existing option in the wp_options database table. 
+			* Options in WordPress are used to store site settings, configurations, and other data.
+			*/		
+			update_option('wd_academy_installed', time());
+		}
+		$version = get_option('wd_academy_version');
+		if( ! $version ) {
+			update_option('wd_academy_version', WD_ACADEMY_VERSION);
+		}
+		
+		
+	}
+	
+	
 	
 	
 	
@@ -83,7 +129,9 @@ final class We_Devs {
 
 
 
-  
+/**
+  * Initialize the main plugin
+*/  
 function we_devs(){
 	  We_Devs::init();
 }
