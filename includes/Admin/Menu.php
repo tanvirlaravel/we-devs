@@ -27,13 +27,31 @@ class Menu {
 		* add_menu_page(string $page_title,	string $menu_title,string $capability,string $menu_slug,
 		*				callable $function = '',string $icon_url = '',int $position = null );
 		*/
-		add_menu_page('Wedevs academy', 'wedevs academy', 'manage_options', 'wedevs-academy', [$this, 'plugin_page'], 'dashicons-welcome-learn-more');
+		$parent_slug = 'wedevs-academy';
+		$capabilities = 'manage_options';
+		add_menu_page('Wedevs academy', 'wedevs academy', $capabilities, $parent_slug, [$this, 'address_book'], 'dashicons-welcome-learn-more');
+		
+		/**
+		* add_submenu_page(string $parent_slug,string $page_title,string $menu_title,string $capability,
+							string $menu_slug,callable $function = '');
+		*/
+		add_submenu_page($parent_slug, "Address book", "address book", $capabilities, $parent_slug, [$this, 'address_book']);
+		add_submenu_page($parent_slug, "Settings", "setting", $capabilities, "webdevs-settings", [$this, 'settings']);
+	
 	}
 	
 	
-	public function plugin_page(){
-		echo "Plugin page content";
+	public function address_book(){
+		$address_book = new Addressbook();
+		$address_book->plugin_page();
 	}
+	
+	public function settings(){
+		echo "Settings";
+	}
+	
+	
+	
 	
 	
 	
