@@ -24,7 +24,13 @@
   */
   
 final class We_Devs {
+	
+	const version = "1.0.0";
+	
+	
 	private function __construct(){
+		$this->define_constants();
+		
 		
 	}  
 	
@@ -42,6 +48,37 @@ final class We_Devs {
 			$instance = new self();
 		}
 	}
+	
+	
+	public function define_constants(){
+		/**
+		* self::version refers to accessing a class constant named version within the same 
+		* class using the self keyword in PHP.
+		*/
+		define("WD_ACADEMY_VERSION", self::version);
+		/**
+		* In PHP, the __FILE__ magic constant 
+		* represents the full path and filename of the current PHP script file. 
+		* It provides the absolute path to the file in which it appears.
+		*/
+		define("WD_ACADEMY_FILE", __FILE__ );
+		/**
+		* In PHP, the __DIR__ magic constant 
+		* represents the directory of the current PHP script file. It returns the absolute path 
+		* to the directory containing the file in which it is used.
+		*/
+		define('WD_ACADEMY_PATH', __DIR__);
+		/**
+		*  the plugins_url() function is used to retrieve the URL for the plugins directory 
+		*/
+		define("WD_ACADEMY_URL", plugins_url("", WD_ACADEMY_FILE));
+		define("WD_ACADEMY_ASSETS", WD_ACADEMY_URL . "/assets");
+	}
+	
+	
+	
+	
+	
 }
 
 
