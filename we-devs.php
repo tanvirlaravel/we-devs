@@ -134,7 +134,7 @@ final class We_Devs {
 	}
 	
 	public function init_plugin(){
-		new WeDevs\Academy\Admin\Menu();
+		new WeDevs\Academy\Admin();
 	}
 	
 	
