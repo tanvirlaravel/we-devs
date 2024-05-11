@@ -23,17 +23,32 @@
   * The main class of wedevs plugin.
   */
   
-class We_Devs {
-	public function __construct(){
+final class We_Devs {
+	private function __construct(){
 		
 	}  
+	
+	public static function init(){
+		
+		$instance = false;
+		
+		if(	! $instance ){
+			/*	
+			* self()			
+			* In PHP, new self() is used within a class to create a new instance of the class 
+			* itself. It's similar to using new ClassName(), but self refers to the current class 
+			* where the code is written, whereas ClassName refers to a specific class.
+			*/
+			$instance = new self();
+		}
+	}
 }
 
 
 
   
 function we_devs(){
-	  new We_Devs();
+	  We_Devs::init();
 }
 
 we_devs();
