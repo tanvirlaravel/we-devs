@@ -15,3 +15,4 @@ class Admin{
         add_action('admin_init', [$addressbook, 'form_handler']);
     }
 }
+

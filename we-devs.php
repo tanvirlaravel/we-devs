@@ -108,29 +108,8 @@ final class We_Devs {
 	
 	
 	public function activate(){
-		/**
-		* In WordPress, the get_option() function 
-		* is used to retrieve the value of an option from the wp_options database table. 
-		* Options in WordPress are used to store site settings, configurations, and other data.
-		*/
-		
-		$installed = get_option('wd_academy_installed');
-		
-		if(! $installed)
-		{		
-			/**
-			* In WordPress, the update_option() function 
-			* is used to update the value of an existing option in the wp_options database table. 
-			* Options in WordPress are used to store site settings, configurations, and other data.
-			*/		
-			update_option('wd_academy_installed', time());
-		}
-		$version = get_option('wd_academy_version');
-		if( ! $version ) {
-			update_option('wd_academy_version', WD_ACADEMY_VERSION);
-		}
-		
-		
+		    $installer = new WeDevs\Academy\Installer();
+            $installer->run();
 	}
 	
 	public function init_plugin(){
@@ -140,7 +119,6 @@ final class We_Devs {
 			new WeDevs\Academy\Frontend();
 		}
 	}
-	
 	
 	
 	
@@ -157,3 +135,6 @@ function we_devs(){
 }
 
 we_devs();
+
+
+
