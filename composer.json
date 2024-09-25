@@ -7,7 +7,7 @@
     "psr-4": {
 		"WeDevs\\Academy\\": "includes/"
     },
-		"files": []
+		"files": ["includes/functions.php"]
 	},
 	"authors": [
     {
