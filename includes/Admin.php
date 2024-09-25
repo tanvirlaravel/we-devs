@@ -5,13 +5,13 @@ namespace WeDevs\Academy;
 class Admin{
 	
 	public function __construct(){
-        $this->dispach_action();
-		new Admin\Menu();
+        $addressbook = new Admin\Addressbook();
+        $this->dispach_action(  $addressbook  );
+		new Admin\Menu(  $addressbook  );
 	}
 
-    public function dispach_action(){
+    public function dispach_action( $addressbook ){
 
-        $addressbook = new Admin\Addressbook();
         add_action('admin_init', [$addressbook, 'form_handler']);
     }
 }

@@ -7,8 +7,11 @@ namespace WeDevs\Academy\Admin;
 */
 
 class Menu {
+
+    public  $addressbook;
 	
-	function __construct(){
+	function __construct(  $addressbook  ){
+        $this->addressbook  =  $addressbook ;
 		/**
 		* In WordPress, the admin_menu action hook 
 		* is fired when the administration menus have been created. This hook is used to add custom menu 
@@ -29,22 +32,19 @@ class Menu {
 		*/
 		$parent_slug = 'wedevs-academy';
 		$capabilities = 'manage_options';
-		add_menu_page('Wedevs academy', 'wedevs academy', $capabilities, $parent_slug, [$this, 'address_book'], 'dashicons-welcome-learn-more');
+		add_menu_page('Wedevs academy', 'wedevs academy', $capabilities, $parent_slug, [$this->addressbook, 'plugin_page'], 'dashicons-welcome-learn-more');
 		
 		/**
 		* add_submenu_page(string $parent_slug,string $page_title,string $menu_title,string $capability,
 							string $menu_slug,callable $function = '');
 		*/
-		add_submenu_page($parent_slug, "Address book", "address book", $capabilities, $parent_slug, [$this, 'address_book']);
+		add_submenu_page($parent_slug, "Address book", "address book", $capabilities, $parent_slug, [$this->addressbook, 'plugin_page']);
 		add_submenu_page($parent_slug, "Settings", "setting", $capabilities, "webdevs-settings", [$this, 'settings']);
 	
 	}
-	
-	
-	public function address_book(){
-		$address_book = new Addressbook();
-		$address_book->plugin_page();
-	}
+
+
+
 	
 	public function settings(){
 		echo "Settings";

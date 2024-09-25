@@ -1,6 +1,8 @@
 <div class="wrap">
    <h1><?php _e("New Address", "text-domain"); ?></h1>
-   
+
+   <?php var_dump($this->errors); ?>
+
     <form action="" method="POST">
         <table class="form-table">
             <tr>
